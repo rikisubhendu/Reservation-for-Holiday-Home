@@ -1,6 +1,7 @@
 <?php
     session_start();
     require("../inc/connection.php");
+    
     function sanitizeInput($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -33,14 +34,20 @@
             $errors[] = "Passwords do not match.";
         }
         
-        // Add more validation as needed
+        $md_pass=md5($pass);
         if (count($errors) === 0) {
             try{
-                $query="INSERT INTO `table_user` (`user_name`, `full_name`, `email`, `ph_no`, `gender`, `pass`) VALUES ('$user_name', '$full_name', '$email', '$ph_no', '$gender', '$pass')";
+                $query="INSERT INTO `table_user` (`user_name`, `full_name`, `email`, `ph_no`, `gender`, `pass`) VALUES ('$user_name', '$full_name', '$email', '$ph_no', '$gender', '$md_pass')";
+           
                 if ($conn->query($query) === TRUE) {?>
                     <div class="alert alert-success" role="alert">
                         SuccessFully register!!!
-                        <button type="button" class="close-alert-btn" onclick="closeAlert(this)">
+                        <button type="button" class="close-alert-btn" onclick="closeAlert(this)" >
+                        <?php 
+                            $_SESSION['is_user_login']=true;
+                            $_SESSION['user_name']=$user_name;
+                            header("Location: UserPage.php");?>
+
                             <span>&times;</span>
                         </button>
                     </div>
@@ -91,7 +98,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="title">Registration</div>
+        <div class="title">Registration For New User</div>
             <div class="content">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?> "  method="post">
                     <div class="user-details">
@@ -121,28 +128,30 @@
                         </div>
                     </div>
                     <div class="gender-details">
-                        <input type="radio" name="gender" id="dot-1">
-                        <input type="radio" name="gender" id="dot-2">
-                        <input type="radio" name="gender" id="dot-3">
+                        <input type="radio" name="gender" value="M" id="dot-1">
+                        <input type="radio" name="gender" value="F" id="dot-2">
+                        <input type="radio" name="gender" value="NOT" id="dot-3">
                         <span class="gender-title">Gender</span>
                         <div class="category">
                             <label for="dot-1">
                                 <span class="dot one"></span>
-                                <span class="gender">Male</span>
+                                <span class="gender" value="M">Male</span>
                             </label>
                             <label for="dot-2">
                                 <span class="dot two"></span>
-                                <span class="gender">Female</span>
+                                <span class="gender" value="F">Female</span>
                             </label>
                             <label for="dot-3">
                                 <span class="dot three"></span>
-                                <span class="gender">Prefer not to say</span>
+                                <span class="gender" vvalue="Not">Prefer not to say</span>
                             </label>
                         </div>
                     </div>
+                    
                     <div class="button">
                         <input type="submit" name="user_reg" value="Register">
                     </div>
+
             </form>
         </div>
     </div>

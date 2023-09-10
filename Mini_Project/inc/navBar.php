@@ -37,7 +37,7 @@ session_start();
         if(isset($_POST['login_user'])){
             
             $id=$_POST["user_name"];
-            $pass=$_POST["pass"];
+            $pass=md5($_POST["pass"]);
             $userInputCap = $_POST['captcha'];
             $captchaString = $_SESSION['captcha'];
                 if ($userInputCap === $captchaString) {
