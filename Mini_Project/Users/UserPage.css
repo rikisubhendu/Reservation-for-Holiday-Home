@@ -1,0 +1,286 @@
+/* Styling for User Dashboard Section */
+/* Update the color palette in your main CSS file */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --secondary-color: #f76c3a; /* Orange */
+    --light-bg-color: #f8f8f8;
+}
+
+/* Styling for User Dashboard Section */
+.user-dashboard {
+    padding: 50px 0;
+    background-color: var(--light-bg-color);
+}
+
+.dashboard-card {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Update the border color and box shadow for a more vibrant look */
+.dashboard-card {
+    border: 2px solid var(--primary-color);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Update button styling */
+.btn-submit {
+    background-color: var(--secondary-color);
+    color: #3b1919;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.user-dashboard {
+    padding: 50px 0;
+    background: linear-gradient(to bottom, #f8f8f8, #e0e0e0);
+}
+
+/* Update the font-family for the dashboard section */
+.user-dashboard {
+    font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-card h3 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.booked-room h5,
+.available-room h5,
+.previous-booking h5 {
+    color: var(--primary-color);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+.btn-submit:hover {
+    background-color: greenyellow;
+}
+
+.user-dashboard {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.dashboard-card {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.booked-room,
+.available-room,
+.previous-booking {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.booked-room h5,
+.available-room h5,
+.previous-booking h5 {
+    margin-bottom: 10px;
+}
+
+/* Styling for User Navbar */
+.user-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 15px 15px; /* Adding curved edges */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.left-section {
+    flex: 1;
+}
+
+.middle-section {
+    flex: 2;
+    text-align: center;
+}
+
+.right-section {
+    flex: 1;
+    text-align: right;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #f76c3a; /* Orange color from your color palette */
+}
+
+.logout-button {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+
+/*For tables*/
+.table-responsive {
+    max-height: 400px; /* Add a maximum height to enable vertical scrolling if needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #333;
+    background-color: #fff;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.table .table {
+    background-color: #fff;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+    border-bottom-width: 2px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e8e8e8;
+}
+
+/* Optional: Add some padding to the whole table card */
+.dashboard-card {
+    padding: 15px;
+}
+/* Additional responsive adjustments as needed */
+@media (max-width: 768px) {
+    .dashboard-card {
+        padding: 15px;
+    }
+}
+/* CSS for horizontal form layout */
+.horizontal-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.horizontal-form .form-group {
+    flex: 1;
+    margin-right: 10px; /* Adjust the margin as needed for spacing */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    padding-right: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px; /* Add margin to the bottom of input fields */
+}
+
+/* Style select boxes */
+.form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px; /* Add margin to the bottom of select boxes */
+}
+
+/* Style the submit button */
+
+.btn-container{
+    margin-top: 16px;
+}
+.btn-submit {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .horizontal-form {
+        flex-direction: column; /* Stack form elements vertically */
+    }
+
+    .horizontal-form .form-group {
+        flex: none; /* Reset flex value for vertical stacking */
+        margin-right: 0;
+    }
+}
