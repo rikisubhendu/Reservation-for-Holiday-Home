@@ -2,7 +2,8 @@
 
 // Function to show the selected content section
 function showSection(sectionId) {
-  // Hide all content sections
+  // Hide all content sectionss
+  console.log(sectionId);
   const sections = document.querySelectorAll('.main_content section');
   sections.forEach(section => {
       section.style.display = 'none';

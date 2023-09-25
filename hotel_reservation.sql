@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2023 at 06:53 AM
+-- Generation Time: Sep 10, 2023 at 08:30 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -50,7 +50,8 @@ INSERT INTO `bookings` (`booking_id`, `user_name`, `room_number`, `check_in_date
 (19, 'sub', 202, '2023-09-28', '2023-09-30', '2023-09-02 14:04:20', 1, '12334.00'),
 (20, 'sub1', 201, '2023-09-13', '2023-09-16', '2023-09-02 16:10:53', 0, '12334.00'),
 (21, 'sub1', 204, '2023-09-13', '2023-09-15', '2023-09-03 12:01:46', 1, '12334.00'),
-(24, 'sub', 302, '2023-09-13', '2023-09-16', '2023-09-05 20:21:27', 1, '10000.00');
+(24, 'sub', 302, '2023-09-13', '2023-09-16', '2023-09-05 20:21:27', 1, '10000.00'),
+(25, 'rahul123', 203, '2023-09-13', '2023-09-15', '2023-09-10 11:52:24', 0, '12334.00');
 
 -- --------------------------------------------------------
 
@@ -163,10 +164,10 @@ INSERT INTO `rooms` (`room_number`, `room_type`, `occupancy`, `bed_type`, `view_
 CREATE TABLE `table_user` (
   `user_name` varchar(10) NOT NULL,
   `full_name` varchar(20) NOT NULL,
-  `email` varchar(10) NOT NULL,
-  `ph_no` int(10) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `ph_no` varchar(15) NOT NULL,
   `gender` text NOT NULL,
-  `pass` varchar(10) NOT NULL
+  `pass` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -174,8 +175,10 @@ CREATE TABLE `table_user` (
 --
 
 INSERT INTO `table_user` (`user_name`, `full_name`, `email`, `ph_no`, `gender`, `pass`) VALUES
-('sub', 'Subhendu s', 'ghdfgsdg@g', 2147483647, 'on', '123@qw'),
-('sub1', 'Subhendu saha', 'ghdfgsdg@g', 2147483647, 'on', 'Riki@12');
+('rahul123', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', 'a6af7b078ebaf1bf6a5d111fdc2052e6'),
+('rahul1231', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', 'a6af7b078ebaf1bf6a5d111fdc2052e6'),
+('sub', 'Subhendu s', 'ghdfgsdg@g', '2147483647', 'on', '123@qw'),
+('sub1', 'Subhendu saha', 'ghdfgsdg@g', '2147483647', 'on', 'Riki@12');
 
 --
 -- Indexes for dumped tables
@@ -229,7 +232,7 @@ ALTER TABLE `table_user`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `family_details`

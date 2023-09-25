@@ -21,6 +21,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Borel&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="admin.css?v=<?php echo time(); ?>">
+    <style>
+        .h-font{
+                font-family: 'Borel', cursive;
+            }
+    </style>
 </head>
 <body>
 
@@ -29,7 +34,7 @@
    
         <div class="wrapper">
             <div class="sidebar">
-                <h2>Taj hotel</h2>
+                <h2 class="h-font">Taj Hotel</h2>
                 <ul>
                     
                     <li><a href="admin.php" data-section="Home" onclick="showSection('home')"><i class="fas fa-home"></i>Home</a></li>
@@ -297,7 +302,7 @@
                                 echo "<td>" . $featuresString . "</td>";
                                 echo "<td>";
                                 //echo "<button type='button' class='btn btn-primary edit-room' name='editRoomBtn' data-room-number='" . $row['room_number'] . "' value='" . $row['room_number'] . "''>Edit</button>";
-                                echo "<button class='btn btn-danger' name='delete_room_number' type='submit' value='" . $row['room_number'] . "'>Delete</button>";
+                                echo "<button class='btn btn-danger' name='delete_room_number' type='submit' value='" . $row['room_number'] . "'><i class='fa fa-trash' aria-hidden='true'></i></button>";
                                 echo "</td>";
 
                                 echo "</tr>";
