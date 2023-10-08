@@ -1,5 +1,7 @@
 <?php
     require("../inc/connection.php");
+  
+
     session_start();
     $currentDate = date('Y-m-d');
     if($_SESSION['is_user_login']===true){
@@ -15,6 +17,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Borel&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="UserPage.css?v=<?php echo time(); ?>">
     <title>Users</title>
 </head>
@@ -23,7 +27,9 @@
     <!-- Navigation Bar -->
     <nav class="user-navbar">
         <div class="left-section">
-            <a href="../index.php" class="navbar-brand">TAJ Hotel</a>
+            <a href="../index.php" class="navbar-brand">
+                <img src="../images/icon.png" class="navbar-icon " href="index.php">
+            </a>
         </div>
         <div class="middle-section">
             <?php
@@ -38,7 +44,9 @@
                     $username = $row["full_name"];
                 }
                 $username = strtok($username, ' ');
-                echo "<span>Welcome, $username</span>";
+                echo "<div class='user_name'>
+                        Welcome, $username
+                    </div>";
             ?>
         </div>
         <div class="right-section">

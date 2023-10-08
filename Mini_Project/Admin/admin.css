@@ -14,7 +14,80 @@ a{
 body{
    background-color: #f3f5f9;
 }
+.container-info {
+  max-width: auto;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f3f5f9;
+}
 
+.squared-box {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping to the next line */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  margin-top: 100px;
+  padding: 10px;
+
+}
+
+.box {
+  width: 300px;
+  height: 100px;
+  border: 2px solid #333;
+  color:black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin-right: 120px; /* Spacing between boxes */
+  border-radius: 10px;
+  position: relative;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+
+}
+
+.box:first-child {
+  margin-left: 0;
+ }
+.box:last-child {
+ margin-right: 0;
+}
+
+/* Style for dashboard items */
+.heading{
+ position: absolute;
+ top: 0;
+}
+.value p{
+  margin-top: 50px;
+  font-size: 30px;
+}
+
+/* Style for headings */
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  /* margin-left: 420px; */
+  text-align: center;
+}
+
+h2 {
+  font-size: 20px;
+  
+}
+
+/* Style for numeric values */
+p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff; /* Blue color for emphasis */
+}
 .wrapper{
   display: flex;
   position: relative;

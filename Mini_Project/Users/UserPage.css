@@ -1,11 +1,26 @@
 /* Styling for User Dashboard Section */
 /* Update the color palette in your main CSS file */
+*{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: black;
+}
 :root {
-    --primary-color: #007bff; /* Blue */
+   
     --secondary-color: #f76c3a; /* Orange */
     --light-bg-color: #f8f8f8;
 }
-
+.navbar-icon {
+    width: 60px; /* Adjust the width to your desired size */
+    height: auto; /* Automatically adjust the height to maintain aspect ratio */
+  }
+  
+  /* Make the image responsive */
+  @media (max-width: 768px) { /* You can adjust the breakpoint as needed */
+    .navbar-icon {
+      width: 30px; /* Adjust the width for smaller screens */
+    }
+  }
 /* Styling for User Dashboard Section */
 .user-dashboard {
     padding: 50px 0;
@@ -28,7 +43,7 @@
 
 /* Update button styling */
 .btn-submit {
-    background-color: var(--secondary-color);
+    background-color: #00ffd5;
     color: #3b1919;
     border: none;
     border-radius: 5px;
@@ -99,7 +114,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: whitesmoke;
     color: #fff;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 15px 15px; /* Adding curved edges */
@@ -136,6 +151,7 @@
 
 .logout-button {
     color: #fff;
+    background-color: #8deede;
     text-decoration: none;
     padding: 8px 16px;
     border: 1px solid #fff;
@@ -144,7 +160,7 @@
 }
 
 .logout-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgb(227, 132, 132);
     border-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -260,7 +276,7 @@
     margin-top: 16px;
 }
 .btn-submit {
-    background-color: #007BFF;
+    background-color: #78dccc;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -271,8 +287,12 @@
 
 /* Hover effect for the submit button */
 .btn-submit:hover {
-    background-color: #0056b3;
+    background-color: rgb(227, 132, 132);
 }
+.user_name{
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+  }
 /* Media query for responsiveness */
 @media (max-width: 768px) {
     .horizontal-form {

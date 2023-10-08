@@ -1,11 +1,32 @@
 <?php
-    require("../inc/connection.php");
+    require_once("../inc/connection.php");
     session_start();
     if($_SESSION['is_admin_login']===true){
        
     }
     else{
         header("Location: ../index.php");
+    }
+?>
+<?php
+    function getCurrentBookings() {
+        global $conn;
+       $curdate=date("Y-m-d");
+       $sql="SELECT COUNT(*) AS total  FROM `bookings` WHERE check_in_date='$curdate'";
+       $result=$conn->query($sql);
+       $data=$result->fetch_assoc();
+        return $data['total'];
+       
+    }
+
+    function getAvilableRooms(){
+        global $conn;
+        $sql="SELECT COUNT(*) AS totalRooms FROM rooms";
+        $result=$conn->query($sql);
+        $data=$result->fetch_assoc();
+        $booking=getCurrentBookings();
+        $avil=$data['totalRooms']-$booking;
+        return $avil;
     }
 
 ?>
@@ -25,6 +46,21 @@
         .h-font{
                 font-family: 'Borel', cursive;
             }
+            .navbar-icon {
+            width: 60px; /* Adjust the width to your desired size */
+            height: auto; /* Automatically adjust the height to maintain aspect ratio */
+            
+            margin-left: 50px;
+            margin-bottom: 20px;
+            
+            }
+
+            /* Make the image responsive */
+            @media (max-width: 768px) { /* You can adjust the breakpoint as needed */
+            .navbar-icon {
+                width: 30px; /* Adjust the width for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -34,7 +70,12 @@
    
         <div class="wrapper">
             <div class="sidebar">
-                <h2 class="h-font">Taj Hotel</h2>
+            <div class="imageDiv">
+                <a href="admin.php">
+                    <img src="../images/icon.png" class="navbar-icon" href="index.php">
+                <a>
+                </div>
+                <!-- <h2 class="h-font">Taj Hotel</h2> -->
                 <ul>
                     
                     <li><a href="admin.php" data-section="Home" onclick="showSection('home')"><i class="fas fa-home"></i>Home</a></li>
@@ -51,11 +92,34 @@
     <div class="main_content">
         <section id="Home" >
             <!-- Home -->
-            <div class="header text-center">Admin Portal</div>  
+            <!-- <div class="header text-center">Admin Portal</div>  
             <div class="info">
             <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
             <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
             <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
+            </div> -->
+            <h1>Welcome to the Admin Dashboard</h1>
+            <div class="container-info">
+                <div class="squared-box">
+                    <div class="box">
+                        <div class="heading">
+                            <p>Current booking of Today <p>
+                        </div>
+                        <div class="value">
+                           <p> <?php echo getCurrentBookings();?></p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="heading">
+                            <p>Avilable Rooms <p>
+                        </div>
+                        <div class="value">
+                           <p> <?php echo  getAvilableRooms();?></p>
+                        </div>
+                    </div>
+                    <div class="box">3</div>
+                <!-- Add more boxes as needed -->
+                </div>  
             </div>
         </section>
 
@@ -398,7 +462,7 @@
                                     echo '<td>' . $row['name'] . '</td>';
                                     echo '<td>' ;
                                     echo '<form method="POST">';
-                                    echo "<button class='btn btn-danger' name='delete_features_number' type='submit' value='" . $row['id'] . "'>Delete</button>";
+                                    echo "<button class='btn btn-danger' name='delete_features_number' type='submit' value='" . $row['id'] . "'><i class='fa fa-trash' aria-hidden='true'></i></button>";
                                     echo '</td>' ;
                                     echo '</form>';
                                     echo '</tr>';
