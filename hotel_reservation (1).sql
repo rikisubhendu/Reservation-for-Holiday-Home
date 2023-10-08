@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2023 at 08:30 AM
+-- Generation Time: Oct 08, 2023 at 10:32 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -50,8 +50,8 @@ INSERT INTO `bookings` (`booking_id`, `user_name`, `room_number`, `check_in_date
 (19, 'sub', 202, '2023-09-28', '2023-09-30', '2023-09-02 14:04:20', 1, '12334.00'),
 (20, 'sub1', 201, '2023-09-13', '2023-09-16', '2023-09-02 16:10:53', 0, '12334.00'),
 (21, 'sub1', 204, '2023-09-13', '2023-09-15', '2023-09-03 12:01:46', 1, '12334.00'),
-(24, 'sub', 302, '2023-09-13', '2023-09-16', '2023-09-05 20:21:27', 1, '10000.00'),
-(25, 'rahul123', 203, '2023-09-13', '2023-09-15', '2023-09-10 11:52:24', 0, '12334.00');
+(25, 'rahul123', 203, '2023-09-13', '2023-09-15', '2023-09-10 11:52:24', 0, '12334.00'),
+(28, 'riki', 201, '2023-10-11', '2023-10-19', '2023-10-08 12:44:17', 0, '12334.00');
 
 -- --------------------------------------------------------
 
@@ -77,8 +77,7 @@ INSERT INTO `family_details` (`id`, `booking_id`, `user_name`, `first_name`, `la
 (5, 16, 'sub1', 'riki', 'saha', 'son', '2023-09-07'),
 (7, 18, 'sub1', 'riki', 'saha', 'son', '2023-08-31'),
 (8, 19, 'sub', 'riki', 'saha', 'son', '2023-08-31'),
-(9, 21, 'sub1', 'riki', 'saha', 'son', '2023-08-30'),
-(12, 24, 'sub', 'sandipan', 'singha', 'son', '2023-08-29');
+(9, 21, 'sub1', 'riki', 'saha', 'son', '2023-08-30');
 
 -- --------------------------------------------------------
 
@@ -103,7 +102,8 @@ INSERT INTO `features` (`id`, `name`, `description`) VALUES
 (4, 'Air Conditioning', 'Maintain your ideal room temperature year-round with efficient air conditioning, creating a comfortable and relaxing atmosphere.'),
 (5, 'Car Parking', 'Enjoy the convenience of secure car parking facilities, ensuring your vehicle is safe and easily accessible during your stay.'),
 (9, 'smart tv', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.'),
-(11, 'smart tv', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.');
+(12, 'swiming pool', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.'),
+(17, 'smart tv', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.');
 
 -- --------------------------------------------------------
 
@@ -150,10 +150,9 @@ CREATE TABLE `rooms` (
 
 INSERT INTO `rooms` (`room_number`, `room_type`, `occupancy`, `bed_type`, `view_type`, `price`, `is_available`, `description`, `floor`, `image_url`, `features_ids`) VALUES
 (201, 'standard', 2, 'king', 'sea', '12334.00', 1, '', 2, '2_rooms.jpg', '1,2,3,4'),
-(202, 'standard', 2, 'king', 'sea', '12334.00', 1, '', 2, 'room1.jpeg', '1,2,3'),
+(202, 'standard', 2, 'king', 'sea', '12334.00', 0, '', 2, 'room1.jpeg', '1,2,3'),
 (203, 'standard', 2, 'king', 'sea', '12334.00', 1, '', 2, 'room1.jpeg', '1,2,3'),
-(204, 'standard', 2, 'king', 'sea', '12334.00', 0, '', 2, 'room1.jpeg', '1,2,3,4'),
-(302, 'deluxe', 4, 'queen', 'sea', '10000.00', 0, '', 3, '2_rooms.jpg', '1,2,3,4');
+(204, 'standard', 2, 'king', 'sea', '12334.00', 0, '', 2, 'room1.jpeg', '1,2,3,4');
 
 -- --------------------------------------------------------
 
@@ -177,6 +176,7 @@ CREATE TABLE `table_user` (
 INSERT INTO `table_user` (`user_name`, `full_name`, `email`, `ph_no`, `gender`, `pass`) VALUES
 ('rahul123', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', 'a6af7b078ebaf1bf6a5d111fdc2052e6'),
 ('rahul1231', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', 'a6af7b078ebaf1bf6a5d111fdc2052e6'),
+('riki', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', '21a96efa6d46151db471e504b84c8009'),
 ('sub', 'Subhendu s', 'ghdfgsdg@g', '2147483647', 'on', '123@qw'),
 ('sub1', 'Subhendu saha', 'ghdfgsdg@g', '2147483647', 'on', 'Riki@12');
 
@@ -232,19 +232,19 @@ ALTER TABLE `table_user`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `family_details`
 --
 ALTER TABLE `family_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `hotel_admin`
