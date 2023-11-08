@@ -192,4 +192,7 @@ form .user-details .input-box{
   }
 }
 
+.error{
+  color: red;
+}
 

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //check if the room is avilable
     if(isset($check_in_date) && isset($check_in_date)){
-        $check_booking = "SELECT * FROM bookings WHERE room_number = '$room_number' 
+        $check_booking = "SELECT * FROM bookings WHERE room_number = '$room_number' AND isCancel=0 
                     AND ((check_in_date <= '$check_in_date' AND check_out_date >= '$check_in_date') 
                     OR (check_in_date <= '$check_out_date' AND check_out_date >= '$check_out_date'))";
         $result = $conn->query($check_booking);
@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     else {
                 date_default_timezone_set('Asia/Kolkata');
                 $currentDateTime = date('Y-m-d H:i:s');
-
-                $insert_booking_sql = "INSERT INTO bookings (user_name, room_number, check_in_date, check_out_date,booking_date, guests,total_price) VALUES (?, ?, ?, ?, ?,?,?)";
+                $isCancel=0;
+                $insert_booking_sql = "INSERT INTO bookings (user_name, room_number, check_in_date, check_out_date, booking_date, guests,total_price, iscancel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($insert_booking_sql);
-                $stmt->bind_param("sissssd", $user_name, $room_number, $check_in_date, $check_out_date, $currentDateTime, $guests, $price);
+                $stmt->bind_param("sissssdi", $user_name, $room_number, $check_in_date, $check_out_date, $currentDateTime, $guests, $price,$isCancel);
                 $stmt->execute();
                 $booking_id = $stmt->insert_id;
                 $stmt->close();
@@ -65,10 +65,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
                 //no of guest update
-                $update_number_booking="UPDATE bookings SET guests=$cnt WHERE booking_id ='$booking_id'";
-                $conn->query($update_number_booking);
-                $conn->close();
-                error("Successfully book Room number {$room_number}");
+                if($cnt==0){
+                    $deleteBooking="DELETE FROM `bookings` WHERE `bookings`.`booking_id` = '$booking_id'";
+                    $conn->query($deleteBooking);
+                    $conn->close();
+                    $_SESSION['check_in_date']=$check_in_date;
+                    $_SESSION['check_out_date']=$check_out_date;
+                    echo '<script>alert("Need to fill one person details");window.location.href = "booking.php?room_number='.$room_number.'";</script>';
+                }
+                else{
+                    $update_number_booking="UPDATE bookings SET guests=$cnt WHERE booking_id ='$booking_id'";
+                    $conn->query($update_number_booking);
+                    $conn->close();
+                    $cnt=0;
+                    error("Successfully book Room number {$room_number}");
+
+                }
+               
 
                 
 

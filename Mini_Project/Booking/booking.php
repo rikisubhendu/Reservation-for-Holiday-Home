@@ -18,12 +18,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="booking.css?v=<?php echo time(); ?>">
     <title>Booking</title>
+    <style>
+        .imageDiv img{
+            padding-left: 10px;
+            height: 70px;
+            width: 100px;
+        }
+    </style>
 </head>
 <body>
-    <?php
-
+    <div class="imageDiv">
+                    <a href="javascript:history.back()">
+                        <img src="../images/icon.png" >
+                    <a>
+    </div>
+        <?php
+        $room_id1 = $_GET['room_number'];
+        
+        $selectQuery="SELECT rooms.isMaintain FROM `rooms` WHERE room_number = '$room_id1'";
+        $result = $conn->query($selectQuery);
+        if ($result) {
+            $row = $result->fetch_row();
+            $check = $row[0];
+            if($check==1){
+                echo '<script>alert("Sorry this room is nor avilable for booking"); window.location.href = "searchroom.php";</script>';
+            }
+            
+        } 
+        
+       
         $currentDate = date('Y-m-d');
         $currentDate=date('Y-m-d', strtotime($currentDate. ' - 1 days'));
+
         $bookingcheck="SELECT room_number FROM `bookings` WHERE `check_out_date` = '$currentDate'";
         $result1 = $conn->query($bookingcheck);
         if ($result1->num_rows > 0) {
@@ -35,9 +61,15 @@
             }
         }
         
-        $check_in_date=$_SESSION['check_in_date'];
-        $check_out_date=$_SESSION['check_out_date'] ;
-        $room_id = $_GET['room_number'];
+        if(isset($_SESSION['check_in_date']) && isset($_SESSION['check_out_date'])){
+            $check_in_date=$_SESSION['check_in_date'];
+            $check_out_date=$_SESSION['check_out_date'] ;
+        }
+        else{
+            $check_in_date=date("Y-m-d");
+            $check_out_date=date("Y-m-d");
+        }
+        
         $selectQuery="SELECT rooms.room_number,rooms.occupancy,rooms.price FROM `rooms` WHERE room_number = '$room_id'";
         $result = $conn->query($selectQuery);
         if ($result) {
@@ -49,7 +81,7 @@
                 <div class="mem-container">
                     <form action="book.php" method="POST">
                         <label for="room_number">Room Number:</label>
-                        <input type="text" name="room_number" value =" <?php echo $room_id?>" readonly>
+                        <input type="text" name="room_number" value =" <?php echo $room_id1?>" readonly>
                         <br>
                         <label for="num_members">Maxmimum Member:</label>
                         <input type="number" id="num_members" name="num_members"  value ="<?php echo $max_no_member?>" max="<?php echo $max_no_member ?>" readonly >
@@ -78,7 +110,7 @@
        <?php
        }
         else{
-            echo '<script>alert("This room is not avilable"); window.location.href = "Users/UserPage.php";</script>';
+            echo '<script>alert("This room is not avilable"); window.location.href = "../Users/UserPage.php";</script>';
         }
 
 

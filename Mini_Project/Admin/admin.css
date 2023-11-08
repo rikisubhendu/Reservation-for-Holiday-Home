@@ -10,6 +10,8 @@
 }
 a{
   text-decoration: none;
+  color: black;
+  cursor: pointer;
 }
 body{
    background-color: #f3f5f9;
@@ -39,7 +41,7 @@ body{
   justify-content: center;
   align-items: center;
   font-size: 24px;
-  margin-right: 120px; /* Spacing between boxes */
+  margin-right: 100px; /* Spacing between boxes */
   border-radius: 10px;
   position: relative;
 }
@@ -56,7 +58,8 @@ body{
   margin-left: 0;
  }
 .box:last-child {
- margin-right: 0;
+ margin-right: 10px;
+
 }
 
 /* Style for dashboard items */
@@ -71,7 +74,7 @@ body{
 
 /* Style for headings */
 h1 {
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 20px;
   /* margin-left: 420px; */
   text-align: center;
@@ -222,13 +225,16 @@ select {
 select[multiple] {
   height: auto;
   width: 100%;
-  min-height: 150px; /* Adjust this value as needed */
+  min-height: 150px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
   font-size: 14px;
   font-family: Arial, sans-serif;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
 }
 
 select {
@@ -242,14 +248,14 @@ select {
 }
 
 select:focus {
-    outline: none;
+    /* outline: none; */
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
-select,
+/* select,
   &::after {
     grid-area: select;
-  }
+  } */
 
 option {
     padding: 8px;
@@ -285,7 +291,7 @@ option {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
 }
 
@@ -416,7 +422,7 @@ tbody tr:hover {
 
 .facility-table i {
   font-size: 24px;
-  color: #3498db;
+  /* color: #3498db; */
 }
 
 /* Additional styling for responsiveness */

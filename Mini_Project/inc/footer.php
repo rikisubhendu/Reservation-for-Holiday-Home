@@ -12,11 +12,11 @@
                     <div class="col-lg-4 pt-4 ">
                         <h3>Links</h3>
                             <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Rooms</a></li>
-                            <li><a href="#">Facilities</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">About</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="room.php">Rooms</a></li>
+                            <li><a href="facility.php">Facilities</a></li>
+                            <li><a href="contact.php">Contact us</a></li>
+                            <li><a href="about.php">About</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 item social pt-5">

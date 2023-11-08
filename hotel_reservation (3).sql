@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2023 at 10:32 AM
+-- Generation Time: Nov 08, 2023 at 07:30 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -35,23 +35,20 @@ CREATE TABLE `bookings` (
   `check_out_date` date NOT NULL,
   `booking_date` datetime DEFAULT NULL,
   `guests` int(11) NOT NULL,
-  `total_price` decimal(10,2) NOT NULL
+  `total_price` decimal(10,2) NOT NULL,
+  `iscancel` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`booking_id`, `user_name`, `room_number`, `check_in_date`, `check_out_date`, `booking_date`, `guests`, `total_price`) VALUES
-(3, 'sub', 201, '2023-08-31', '2023-09-02', NULL, 5, '2000.00'),
-(5, 'sub1', 202, '2023-08-30', '2023-09-01', NULL, 5, '2000.00'),
-(16, 'sub1', 204, '2023-09-01', '2023-09-08', NULL, 2, '0.00'),
-(18, 'sub1', 202, '2023-08-30', '2023-09-01', NULL, 1, '12334.00'),
-(19, 'sub', 202, '2023-09-28', '2023-09-30', '2023-09-02 14:04:20', 1, '12334.00'),
-(20, 'sub1', 201, '2023-09-13', '2023-09-16', '2023-09-02 16:10:53', 0, '12334.00'),
-(21, 'sub1', 204, '2023-09-13', '2023-09-15', '2023-09-03 12:01:46', 1, '12334.00'),
-(25, 'rahul123', 203, '2023-09-13', '2023-09-15', '2023-09-10 11:52:24', 0, '12334.00'),
-(28, 'riki', 201, '2023-10-11', '2023-10-19', '2023-10-08 12:44:17', 0, '12334.00');
+INSERT INTO `bookings` (`booking_id`, `user_name`, `room_number`, `check_in_date`, `check_out_date`, `booking_date`, `guests`, `total_price`, `iscancel`) VALUES
+(48, 'test', 203, '2023-11-14', '2023-11-16', '2023-11-05 17:37:08', 1, '1200.00', 1),
+(50, 'test', 203, '2023-11-14', '2023-11-17', '2023-11-05 18:11:43', 1, '1200.00', 0),
+(52, 'test', 203, '2023-11-05', '2023-11-07', '2023-11-05 19:12:29', 1, '1200.00', 1),
+(53, 'test', 203, '2023-11-09', '2023-11-11', '2023-11-08 20:40:17', 1, '1200.00', 1),
+(55, 'test', 203, '2023-11-08', '2023-11-10', '2023-11-08 20:43:53', 1, '1200.00', 1);
 
 -- --------------------------------------------------------
 
@@ -74,10 +71,11 @@ CREATE TABLE `family_details` (
 --
 
 INSERT INTO `family_details` (`id`, `booking_id`, `user_name`, `first_name`, `last_name`, `relationship`, `date_of_birth`) VALUES
-(5, 16, 'sub1', 'riki', 'saha', 'son', '2023-09-07'),
-(7, 18, 'sub1', 'riki', 'saha', 'son', '2023-08-31'),
-(8, 19, 'sub', 'riki', 'saha', 'son', '2023-08-31'),
-(9, 21, 'sub1', 'riki', 'saha', 'son', '2023-08-30');
+(21, 48, 'test', 'Subhendu ', 'saha', 'Myself', '2023-10-31'),
+(22, 50, 'test', 'Subhendu ', 'saha', 'Myself', '2023-10-31'),
+(23, 52, 'test', 'sandipan', 'singha', 'Myself', '2023-10-31'),
+(24, 53, 'test', 'Subhendu ', 'Saha', 'Myself', '2023-11-14'),
+(25, 55, 'test', 'Subhendu ', 'Saha', 'Myself', '2023-11-01');
 
 -- --------------------------------------------------------
 
@@ -96,14 +94,9 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`id`, `name`, `description`) VALUES
-(1, 'TV', ' Immerse yourself in entertainment with a high-quality television, offering a wide range of channels and content for your enjoyment.'),
-(2, 'Mini Bar', 'Quench your thirst and cravings with a well-stocked mini bar, providing a selection of beverages and snacks at your fingertips.'),
 (3, 'Wi-Fi', 'Stay connected and browse the web seamlessly with complimentary Wi-Fi access, ensuring you\'re always in touch with the world.'),
-(4, 'Air Conditioning', 'Maintain your ideal room temperature year-round with efficient air conditioning, creating a comfortable and relaxing atmosphere.'),
-(5, 'Car Parking', 'Enjoy the convenience of secure car parking facilities, ensuring your vehicle is safe and easily accessible during your stay.'),
-(9, 'smart tv', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.'),
-(12, 'swiming pool', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.'),
-(17, 'smart tv', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.');
+(47, 'Car Parking', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.'),
+(48, 'swiming pool', 'Elevate your entertainment experience with a Smart TV. Access streaming services, browse the web, and enjoy apps on a brilliant, connected display.');
 
 -- --------------------------------------------------------
 
@@ -127,6 +120,30 @@ INSERT INTO `hotel_admin` (`sl_no`, `admin_id`, `admin_pass`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `refunds`
+--
+
+CREATE TABLE `refunds` (
+  `refund_id` int(11) NOT NULL,
+  `booking_id` int(11) DEFAULT NULL,
+  `refund_amount` decimal(10,2) DEFAULT NULL,
+  `cancel_date` datetime DEFAULT NULL,
+  `isrefund` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `refunds`
+--
+
+INSERT INTO `refunds` (`refund_id`, `booking_id`, `refund_amount`, `cancel_date`, `isrefund`) VALUES
+(6, 48, '1200.00', '2023-11-05 18:01:23', 0),
+(7, 52, '960.00', '2023-11-05 19:20:42', 0),
+(8, 53, '1200.00', '2023-11-08 20:40:27', 0),
+(9, 55, '960.00', '2023-11-08 20:44:06', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rooms`
 --
 
@@ -141,18 +158,22 @@ CREATE TABLE `rooms` (
   `description` text DEFAULT NULL,
   `floor` int(11) DEFAULT NULL,
   `image_url` varchar(255) DEFAULT NULL,
-  `features_ids` varchar(255) DEFAULT NULL
+  `features_ids` varchar(255) DEFAULT NULL,
+  `isMaintain` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`room_number`, `room_type`, `occupancy`, `bed_type`, `view_type`, `price`, `is_available`, `description`, `floor`, `image_url`, `features_ids`) VALUES
-(201, 'standard', 2, 'king', 'sea', '12334.00', 1, '', 2, '2_rooms.jpg', '1,2,3,4'),
-(202, 'standard', 2, 'king', 'sea', '12334.00', 0, '', 2, 'room1.jpeg', '1,2,3'),
-(203, 'standard', 2, 'king', 'sea', '12334.00', 1, '', 2, 'room1.jpeg', '1,2,3'),
-(204, 'standard', 2, 'king', 'sea', '12334.00', 0, '', 2, 'room1.jpeg', '1,2,3,4');
+INSERT INTO `rooms` (`room_number`, `room_type`, `occupancy`, `bed_type`, `view_type`, `price`, `is_available`, `description`, `floor`, `image_url`, `features_ids`, `isMaintain`) VALUES
+(201, 'deluxe', 4, 'king', 'Sea', '1000.00', 0, '', 2, '2_rooms.jpg', '1,2,3,4', 0),
+(203, 'suite', 4, 'king', 'sea', '1200.00', 1, '', 2, '1.jpg', '2,3,47', 0),
+(205, 'standard', 2, 'king', 'Sea', '1000.00', 0, '', 2, '2_rooms.jpg', '3,47', 0),
+(302, 'deluxe', 2, 'twin', 'Sea', '5000.00', 0, '', 3, '2_rooms.jpg', '2,3,47', 0),
+(304, 'deluxe', 4, 'king', 'Null', '1000.00', 0, '', 3, '1.jpg', '2,3,47,48', 0),
+(401, 'standard', 3, 'queen', 'Sea', '1200.00', 0, '', 4, 'room1.jpeg', '2,3,47', 1),
+(402, 'suite', 4, 'king', 'Sea', '10000.00', 0, '', 4, '2_rooms.jpg', '3,47', 0);
 
 -- --------------------------------------------------------
 
@@ -177,8 +198,8 @@ INSERT INTO `table_user` (`user_name`, `full_name`, `email`, `ph_no`, `gender`, 
 ('rahul123', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', 'a6af7b078ebaf1bf6a5d111fdc2052e6'),
 ('rahul1231', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', 'a6af7b078ebaf1bf6a5d111fdc2052e6'),
 ('riki', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', '21a96efa6d46151db471e504b84c8009'),
-('sub', 'Subhendu s', 'ghdfgsdg@g', '2147483647', 'on', '123@qw'),
-('sub1', 'Subhendu saha', 'ghdfgsdg@g', '2147483647', 'on', 'Riki@12');
+('sub1', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', 'bb14121c1b37acca96a0558e1b359167'),
+('test', 'Rahul sharma', 'sahasubhendu2000@gmail.com', '9878393421', 'M', 'bb14121c1b37acca96a0558e1b359167');
 
 --
 -- Indexes for dumped tables
@@ -213,6 +234,13 @@ ALTER TABLE `hotel_admin`
   ADD PRIMARY KEY (`sl_no`);
 
 --
+-- Indexes for table `refunds`
+--
+ALTER TABLE `refunds`
+  ADD PRIMARY KEY (`refund_id`),
+  ADD KEY `booking_id` (`booking_id`);
+
+--
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
@@ -232,25 +260,31 @@ ALTER TABLE `table_user`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `family_details`
 --
 ALTER TABLE `family_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `hotel_admin`
 --
 ALTER TABLE `hotel_admin`
   MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `refunds`
+--
+ALTER TABLE `refunds`
+  MODIFY `refund_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -269,6 +303,12 @@ ALTER TABLE `bookings`
 ALTER TABLE `family_details`
   ADD CONSTRAINT `family_details_ibfk_1` FOREIGN KEY (`user_name`) REFERENCES `table_user` (`user_name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `family_details_ibfk_2` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `refunds`
+--
+ALTER TABLE `refunds`
+  ADD CONSTRAINT `refunds_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

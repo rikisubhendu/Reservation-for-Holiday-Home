@@ -67,21 +67,23 @@ require("inc/connection.php");
                             </div>
                             <div class="col-lg-2 mb-3">
                                 <label class="form-lable" style="font-weight:500">Adult</label>
-                                <select class="form-select shadow-none" name="adults">
+                                <!-- <select class="form-select shadow-none" name="adults">
                                     <option selected>Select</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
-                                </select>
+                                </select> -->
+                                <input type="text" class="form-control shadow-none" name="adults">
                             </div>
                             <div class="col-lg-2 mb-3">
                                 <label class="form-lable" style="font-weight:500">Children</label>
-                                <select class="form-select shadow-none" name="children">
+                                <!-- <select class="form-select shadow-none" name="children">
                                     <option selected>Select</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
-                                </select>
+                                </select> -->
+                                <input type="text" class="form-control shadow-none" name="children">
                             </div>
                             <div class="col-lg-1">
                                 <button type="submit" class="btn btn-submit text-white shadow-none custom-bg mb-3" id="check_btn" name="searchbtn">Submit</button>
@@ -174,17 +176,34 @@ require("inc/connection.php");
         </div>
     </div>
 
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Contact Us</h2>
+    <section id="contact" class="mt-5 pt-4 mb-4 text-center fw-bold h-font">
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Contact us</h2>
+</section>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <h5>Call us</h5>
-                <a href="tel: +91 1234567">
-
-                </a>
+                <h5>Contact Information</h5>
+                <p>If you have any questions or need assistance, feel free to get in touch with us.</p>
+                <address>
+                    <strong>Taj Hotel</strong><br>
+                    123 Main Street<br>
+                    City, Country<br>
+                </address>
+            </div>
+            <div class="col-lg-4">
+                <h5>Call Us</h5>
+                <p>For reservations and inquiries, you can reach us at:</p>
+                <p>+91 123-4567</p>
+            </div>
+            <div class="col-lg-4">
+                <h5>Email Us</h5>
+                <p>If you prefer email, you can also send us a message at:</p>
+                <p>info@example.com</p>
             </div>
         </div>
     </div>
+
     <?php require("inc/footer.php")?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>

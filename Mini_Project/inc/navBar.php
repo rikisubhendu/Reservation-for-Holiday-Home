@@ -103,11 +103,11 @@ session_start();
                         </li>
                     
                         <li class="nav-item">
-                        <a class="nav-link me-5 col-mb-2 fw-bold active" aria-current="page" href="#">About </a>
+                        <a class="nav-link me-5 col-mb-2 fw-bold active" aria-current="page" href="about.php">About </a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link fw-bold" href="#">Contact us</a>
+                        <a class="nav-link fw-bold" href="contact.php">Contact us</a>
                         </li>
                     </ul>
                 </div>

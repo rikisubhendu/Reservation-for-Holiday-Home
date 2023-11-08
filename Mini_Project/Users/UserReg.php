@@ -17,25 +17,25 @@
         $pass=sanitizeInput($_POST['pass']);
         $Rpass=sanitizeInput($_POST['Rpass']);
 
-       $errors =array();
+    //    $errors =array();
 
-        if(!preg_match('/^[0-9]{10}+$/', $ph_no)) {
-            $errors[] ="Invalid Phone Number";
-        } 
-        if (empty($pass)) {
-            $errors[] = "Password is required.";
-        } elseif (strlen($pass) < 10 || strlen($pass) > 14) {
-            $errors[] = "Password must be between 10 and 14 characters.";
-        } elseif (!preg_match('/[A-Za-z]/', $pass) || !preg_match('/[0-9]/', $pass) || !preg_match('/[^A-Za-z0-9]/', $pass)) {
-            $errors[] = "Password must include at least one letter, one number, and one special character.";
-        }
+    //     if(!preg_match('/^[0-9]{10}+$/', $ph_no)) {
+    //         $errors[] ="Invalid Phone Number";
+    //     } 
+    //     if (empty($pass)) {
+    //         $errors[] = "Password is required.";
+    //     } elseif (strlen($pass) < 10 || strlen($pass) > 14) {
+    //         $errors[] = "Password must be between 10 and 14 characters.";
+    //     } elseif (!preg_match('/[A-Za-z]/', $pass) || !preg_match('/[0-9]/', $pass) || !preg_match('/[^A-Za-z0-9]/', $pass)) {
+    //         $errors[] = "Password must include at least one letter, one number, and one special character.";
+    //     }
 
-        if ($pass !== $Rpass) {
-            $errors[] = "Passwords do not match.";
-        }
+    //     if ($pass !== $Rpass) {
+    //         $errors[] = "Passwords do not match.";
+    //     }
         
         $md_pass=md5($pass);
-        if (count($errors) === 0) {
+        // if (count($errors) === 0) {
             try{
                 $query="INSERT INTO `table_user` (`user_name`, `full_name`, `email`, `ph_no`, `gender`, `pass`) VALUES ('$user_name', '$full_name', '$email', '$ph_no', '$gender', '$md_pass')";
            
@@ -65,18 +65,18 @@
                 </div>
             <?php }
     
-        }
-        else{
-                foreach ($errors as $error) {?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php echo $error; ?>
-                        <button type="button" class="close-alert-btn" onclick="closeAlert(this)">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                <?php
-                }
-        } 
+        //}
+        // else{
+        //         foreach ($errors as $error) {?>
+        <!-- //             <div class="alert alert-danger" role="alert">
+        //                 <?php //echo $error; ?>
+        //                 <button type="button" class="close-alert-btn" onclick="closeAlert(this)">
+        //                     <span>&times;</span>
+        //                 </button>
+        //             </div> -->
+        //         <?php
+        //         }
+        // } 
        
         
     }
@@ -104,27 +104,33 @@
                     <div class="user-details">
                         <div class="input-box">
                             <span class="details">Full Name</span>
-                            <input type="text" name="full_name"  placeholder="Enter your name" required>
+                            <input type="text" name="full_name" id="full_name" placeholder="Enter your name" required onchange="validateFullName()">
+                            <div class="error" id="full_name_error"></div>
                         </div>
                         <div class="input-box">
                             <span class="details">Username</span>
-                            <input type="text" name="user_name"  placeholder="Enter your username" required>
+                            <input type="text" name="user_name" id="user_name" placeholder="Enter your username" required onchange="validateUsername()">
+                            <div class="error" id="user_name_error"></div>
                         </div>
                         <div class="input-box">
                             <span class="details">Email</span>
-                            <input type="text" name="email"  placeholder="Enter your email" required>
+                            <input type="text" name="email" id="email" placeholder="Enter your email" required onchange="validateEmail()">
+                            <div class="error" id="email_error"></div>
                         </div>
                         <div class="input-box">
                             <span class="details">Phone Number</span>
-                            <input type="text" name="ph_no"  placeholder="Enter your number" required>
+                            <input type="text" name="ph_no" id="ph_no" placeholder="Enter your number" required onchange="validatePhoneNumber()">
+                            <div class="error" id="ph_no_error"></div>
                         </div>
                         <div class="input-box">
                             <span class="details">Password</span>
-                            <input type="password" name="pass"  placeholder="Enter your password" required>
+                            <input type="password" name="pass" id="pass" placeholder="Enter your password" required onchange="validatePassword()">
+                            <div class="error" id="pass_error"></div>
                         </div>
                         <div class="input-box">
                             <span class="details">Confirm Password</span>
-                            <input type="password" name="Rpass"  placeholder="Confirm your password" required>
+                            <input type="password" name="Rpass" id="Rpass" placeholder="Confirm your password" required onchange="validateConfirmPassword()">
+                            <div class="error" id="Rpass_error"></div>
                         </div>
                     </div>
                     <div class="gender-details">
@@ -149,13 +155,13 @@
                     </div>
                     
                     <div class="button">
-                        <input type="submit" name="user_reg" value="Register">
+                        <input type="submit" name="user_reg" value="Register" onclick="return validateForm()">
                     </div>
 
             </form>
         </div>
     </div>
-    <script src="UserReg.js"></script>
+    <script src="userReg.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

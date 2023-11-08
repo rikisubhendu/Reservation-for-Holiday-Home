@@ -46,6 +46,7 @@
     background-color: #00ffd5;
     color: #3b1919;
     border: none;
+   
     border-radius: 5px;
     padding: 8px 15px;
     font-weight: 500;
@@ -273,7 +274,8 @@
 /* Style the submit button */
 
 .btn-container{
-    margin-top: 16px;
+    /* margin-top: 5px; */
+    margin-bottom: 20px;
 }
 .btn-submit {
     background-color: #78dccc;

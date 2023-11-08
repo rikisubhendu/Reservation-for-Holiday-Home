@@ -59,21 +59,28 @@ window.addEventListener("click", (event) => {
     }
 });
 
-const editRoomButtons = document.querySelectorAll(".edit-room");
+const editRoomBtn = document.getElementById("editRoomBtn");
 const editRoomModal = document.getElementById("editRoomModal");
-const closeModaledit = editRoomModal.querySelector(".close");
-// Add a click event listener to each "Edit" button
-editRoomButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        // Get the room number from the data attribute
-        const roomNumber = button.getAttribute("data-room-number");
-        editRoomModal.style.display = "block";
-        // Here, you can perform any actions related to editing the room with the roomNumber
-        // For example, you can open a modal or send an AJAX request to the server for editing.
 
-        // For demonstration purposes, let's show an alert:
-        alert("Editing room number " + roomNumber);
-    });
+const closeModal1 = addRoomModal.querySelector(".close");
+
+// Show the modal when the button is clicked
+editRoomBtn.addEventListener("click", () => {
+    editRoomModal.style.display = "block";
+});
+
+
+
+// Close the modal when the close button is clicked
+closeModal1.addEventListener("click", () => {
+    editRoomModal.style.display = "none";
+});
+
+// Close the modal when clicking outside the modal content
+window.addEventListener("click", (event) => {
+    if (event.target === addRoomModal) {
+        addRoomModal.style.display = "none";
+    }
 });
 
 const closeButton = document.createElement("span");
@@ -101,31 +108,7 @@ function closeAlert(button) {
   }
 }
 
-editRoomButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-      // Get the room number from the data attribute
-      const roomNumber = button.getAttribute("data-room-number");
-      editRoomModal.style.display = "block";
 
-      // Send an AJAX request to fetch data from the server
-      fetch("edit.php", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ roomNumber: roomNumber }),
-      })
-      .then((response) => response.json())
-      .then((data) => {
-          // Handle the data received from the server
-          // You can populate your modal or do other actions here
-          console.log(data); // Display the fetched data in the browser console for testing
-      })
-      .catch((error) => {
-          console.error("Error fetching data:", error);
-      });
-  });
-});
 
 
 
